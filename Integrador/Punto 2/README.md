@@ -1,4 +1,4 @@
-## Consigna
+# Punto 2
 Se solicita implementar un sistema para la gestión de tarjetas de puntos de un supermercado. El sistema deberá registrar las cuentas de puntos de los clientes, los movimientos de puntos de cada cuenta (ganancia de puntos y uso de los puntos) y las organizaciones con la que el supermercado tiene convenios y promociones especiales.
 
 Se le ha entregado el siguiente diseño parcial que se debe respetar:
