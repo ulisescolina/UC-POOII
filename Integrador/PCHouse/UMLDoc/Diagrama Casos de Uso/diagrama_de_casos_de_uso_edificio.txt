@@ -1,0 +1,9 @@
+@startuml diagrama_de_casos_de_uso_edificio.png
+left to right direction
+:Usuario: -- (CU-06\nCrear edificio)
+:Usuario: -- (CU-08\nModificar edificio)
+:Usuario: -- (CU-07\nEliminar edificio)
+:Usuario: -- (CU-09\nConsultar edificios)
+(CU-06\nCrear edificio) ..> (CU-10\nCrear habitacion): <<include>>
+(CU-07\nEliminar edificio) ..> (CU-11\nEliminar habitacion): <<include>>
+@enduml

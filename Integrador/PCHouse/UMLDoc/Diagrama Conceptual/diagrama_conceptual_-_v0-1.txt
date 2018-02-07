@@ -1,0 +1,9 @@
+@startuml diagrama_conceptual_-_v0-1.png
+class Edificio
+class Usuario
+class Habitacion
+class Aparato
+Edificio -- Usuario
+Edificio -- Habitacion
+Habitacion -- Aparato
+@enduml
