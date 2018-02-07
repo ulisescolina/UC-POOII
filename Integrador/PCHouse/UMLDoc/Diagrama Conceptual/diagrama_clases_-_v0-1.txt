@@ -1,0 +1,22 @@
+@startuml diagrama_clases_-_v0-1.png
+class Edificio {
+  - nombreEdificio: String
+}
+
+class Usuario {
+  - nombreUsuario: String
+  - contraseña: String
+}
+
+class Habitacion {
+  - nroHabitacion: String
+}
+
+class Aparato {
+  - nombreAparato: String
+}
+
+Edificio "*" -- "1..*" Usuario
+Edificio "1" -- "1..*" Habitacion
+Habitacion "1" -- "*" Aparato
+@enduml

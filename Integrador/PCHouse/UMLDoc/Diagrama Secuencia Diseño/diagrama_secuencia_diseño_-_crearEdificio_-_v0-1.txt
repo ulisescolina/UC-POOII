@@ -1,0 +1,23 @@
+@startuml diagrama_secuencia_diseño_-_crearEdificio_-_v0-1.png
+
+participant ":Sistema" as S
+control ":ControladorGeneral" as CG
+participant ":Edificio" as E
+participant ":Usuario" as U
+participant ":Habitacion" as H
+
+S -> CG: crearEdificio(nombre:String, u:Usuario)
+create E
+CG -> E: e:=create(nombre:String)
+alt caso exitoso
+  CG -> E: agregarUsuario(u)
+  create H
+  CG -> H: h:=create(nombreHabitacion:Strng, e:Edificio)
+  CG -> E: agregarHabitacion(h)
+  E -> CG: ok
+  CG -> S: msg: Edificio creado satisfactoriamente
+else caso fallido
+  E -> CG: fallo
+  CG -> S: msg: Hubo un problema en la creacion del edificio
+end
+@enduml

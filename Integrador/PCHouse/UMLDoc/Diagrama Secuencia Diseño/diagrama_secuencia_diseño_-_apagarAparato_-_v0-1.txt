@@ -1,0 +1,18 @@
+@startuml diagrama_secuencia_diseño_-_apagarAparato_-_v0-1.png
+
+participant ":Sistema" as S
+control ":ControladorGeneral" as CG
+participant "a:Aparato" as A
+
+
+S -> CG: apagarAparato(a:Aparato)
+alt a is not null
+  create A
+  CG -> A: apagar()
+  CG -> S: msg: se esta procesando la peticion
+  A -> CG: ok
+  CG -> S: msg: Aparato apagado
+else a is null
+  CG -> S: msg: no se determino el aparato a ser apagado
+end
+@enduml

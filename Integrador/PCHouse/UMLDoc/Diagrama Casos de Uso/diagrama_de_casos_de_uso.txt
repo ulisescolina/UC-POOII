@@ -1,0 +1,7 @@
+@startuml diagrama_de_casos_de_uso_habitacion.png
+left to right direction
+:Usuario: -- (CU-10\nCrear habitacion)
+:Usuario: -- (CU-11\nEliminar habitacion)
+:Usuario: -- (CU-13\nConsultar habitaciones)
+:Usuario: -- (CU-12\nModificar habitacion)
+@enduml

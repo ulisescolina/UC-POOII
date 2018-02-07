@@ -1,0 +1,37 @@
+@startuml diagrama_secuencia_diseño_-_crearAparato_-_v0-1.png
+
+participant ":Sistema" as S
+control ":ControladorGeneral" as CG
+participant ":Luz" as L
+participant ":Ventilador" as V
+participant ":AireAcondicionado" as AA
+participant "h:Habitacion" as H
+
+
+S -> CG: crearAparato(nombreAparato:String, TipoAparato:String, h:Habitacion)
+alt h != null
+alt TipoAparato != null
+alt TipoAparato == "LUZ"
+  create L
+  CG -> L: l:=create(nombreAparato, h)
+  CG -> H: agregarAparato(l)
+else TipoAparato == "VENTILADOR"
+  create V
+  CG -> V: v:=create(nombreAparato, h)
+  CG -> H: agregarAparato(v)
+else TipoAparato == "AIRE ACONDICIONADO"
+  create AA
+  CG -> AA: aa:=create(nombreAparato, h)
+  CG -> H: agregarAparato(aa)
+end
+H -> CG: msg: exitoso
+CG -> S: msg: se agrego el aparato a la habitacion
+else TipoAparato == null
+H -> CG: cod err. 1
+CG -> S: msg: se debe definir el tipo de aparato a crear
+end
+else h == null
+H -> CG: cod err. 2
+CG -> S: msg: se debe definir la habitacion a la cual asociar el aparato 
+end
+@enduml

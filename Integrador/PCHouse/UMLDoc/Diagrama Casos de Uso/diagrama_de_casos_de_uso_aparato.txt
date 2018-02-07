@@ -1,0 +1,10 @@
+@startuml diagrama_de_casos_de_uso_aparato.png
+left to right direction
+:Usuario: -- (CU-14\nCrear aparato)
+:Usuario: -- (CU-15\nEliminar aparato)
+:Usuario: -- (CU-16\nModificar aparato)
+:Usuario: -- (CU-17\nConsultar aparatos)
+:Usuario: -- (CU-18\nPrender aparato)
+:Usuario: -- (CU-19\nApagar aparato)
+:Usuario: -- (CU-20\nConfigurar aparato)
+@enduml
