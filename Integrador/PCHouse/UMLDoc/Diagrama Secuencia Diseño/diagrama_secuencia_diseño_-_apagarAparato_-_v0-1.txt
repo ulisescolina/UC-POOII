@@ -2,17 +2,49 @@
 
 participant ":Sistema" as S
 control ":ControladorGeneral" as CG
-participant "a:Aparato" as A
+participant ":Luz" as L
+participant ":Ventilador" as V
+participant ":AireAcondicionado" as AA
 
-
-S -> CG: apagarAparato(a:Aparato)
-alt a is not null
-  create A
-  CG -> A: apagar()
-  CG -> S: msg: se esta procesando la peticion
-  A -> CG: ok
-  CG -> S: msg: Aparato apagado
-else a is null
-  CG -> S: msg: no se determino el aparato a ser apagado
+S -> CG: apagarAparato(a:TipoAparato)
+alt a != null
+        alt a es instancia de Luz
+                create L
+                CG -> L: l:=(Luz) a
+                alt l esta prendida
+                        CG -> L: apagar()
+                        L -> CG: msg: exitoso
+                        CG -> S: El aparato se encuentra apagado
+                else l esta apagada
+                        L -> CG: cod error 2
+                        CG -> S: El aparato ya esta apagado
+                end
+        else a es instancia de Ventilador
+                create V
+                CG -> V: v:=(Ventilador) a
+                alt v esta prendido
+                        CG -> V: apagar()
+                        V -> CG: msg: exitoso
+                        CG -> S: El aparato se encuentra apagado
+                else v esta apagado
+                        V -> CG: cod error 2
+                        CG -> S: El aparato ya esta apagado
+                end
+        else a es instancia de AireAcondicionado
+                create AA
+                CG -> AA: aa:=(AireAcondicionado) a
+                alt aa esta prendido
+                        CG -> AA: apagar()
+                        AA -> CG: msg: exitoso
+                        CG -> S: El aparato se encuentra apagado
+                else aa esta apagado
+                        AA -> CG: cod error 2
+                        CG -> S: El aparato ya esta apagado
+                end
+        end
+else a == null
+        CG -> S: se debe brindar como parametro el aparato a ser apagado
 end
+ 
 @enduml
+
