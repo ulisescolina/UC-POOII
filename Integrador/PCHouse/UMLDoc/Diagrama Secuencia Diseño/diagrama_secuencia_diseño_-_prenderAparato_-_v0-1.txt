@@ -2,17 +2,48 @@
 
 participant ":Sistema" as S
 control ":ControladorGeneral" as CG
-participant "a:Aparato" as A
+participant ":Luz" as L
+participant ":Ventilador" as V
+participant ":AireAcondicionado" as AA
 
-
-S -> CG: apagarAparato(a:Aparato)
-alt a is not null
-  create A
-  CG -> A: prender()
-  CG -> S: msg: se esta procesando la peticion
-  A -> CG: ok
-  CG -> S: msg: aparato prendido
-else a is null
-  CG -> S: msg: no se determino el aparato a ser prendido
+S -> CG: prenderAparato(a:TipoAparato)
+alt a != null
+	alt a es instancia de Luz
+		create L
+		CG -> L: l:=(Luz) a
+		alt l esta apagada
+			CG -> L: prender()
+			L -> CG: msg: exitoso
+			CG -> S: El aparato se encuentra encendido
+		else l esta prendida
+			L -> CG: cod error 2
+			CG -> S: El aparato ya esta encendido
+		end
+	else a es instancia de Ventilador
+		create V
+		CG -> V: v:=(Ventilador) a
+		alt v esta apagado
+			CG -> V: prender()
+			V -> CG: msg: exitoso
+			CG -> S: El aparato se encuentra encendido
+		else v esta prendido
+			V -> CG: cod error 2
+			CG -> S: El aparato ya esta encendido
+		end
+	else a es instancia de AireAcondicionado
+		create AA
+		CG -> AA: aa:=(AireAcondicionado) a
+		alt aa esta apagado
+			CG -> AA: prender()
+			AA -> CG: msg: exitoso
+			CG -> S: El aparato se encuentra encendido
+		else aa esta prendido
+			AA -> CG: cod error 2
+			CG -> S: El aparato ya esta encendido 
+		end
+	end
+else a == null
+	CG -> S: se debe brindar como parametro el aparato a ser prendido 
 end
+
 @enduml
