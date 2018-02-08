@@ -1,0 +1,41 @@
+@startuml diagrama_secuencia_sistema_-_v0-1.png
+
+actor Invitado
+actor Usuario
+participant ":Sistema" as S
+
+Invitado -> S: altaUsuario(nombre:String, pass:String)
+
+== Manejo de usuario ==
+Usuario -> S: autenticarUsuario(nombre:String, pass:String)
+note right
+  ""Se recuerda al""
+  ""usuario autenticado""
+end note
+Usuario -> S: modificarDatosUsuario(nombre:String, pass:String)
+Usuario -> S: eliminarUsuario(usuario: Usuario)
+Usuario -> S: consultarDatosUsuario()
+
+== Manejo de Edificio ==
+Usuario -> S: crearEdificio(nombreEdificio:String, u:Usuario)
+Usuario -> S: eliminarEdificio(edificio: Edificio)
+Usuario -> S: modificarEdificio(edificio: Edificio, nombreEdificio: String)
+Usuario -> S: consultarEdificios()
+
+== Manejo de Habitacion ==
+Usuario -> S: crearHabitacion(nombreHabitacion: String, edificio:Edificio)
+Usuario -> S: eliminarHabitacion(habitacion: Habitacion)
+Usuario -> S: consultarHabitaciones()
+Usuario -> S: modificarHabitacion(habitacion: Habitacion, nombreHabitacion: String)
+
+== Manejo de Aparato ==
+Usuario -> S: crearAparato(nombreAparato: String, tipoAparato: String, habitacion:Habitacion)
+Usuario -> S: eliminarAparato(aparato: Aparato)
+Usuario -> S: modificarAparato(aparato: Aparato, nombreAparato: String)
+Usuario -> S: consultarAparatos()
+Usuario -> S: prenderAparato(aparato: Aparato)
+Usuario -> S: apagarAparato(aparato: Aparato)
+Usuario -> S: configurarAparatoTemperatura(a: Aparato, temp: double)
+Usuario -> S: configurarAparatoVelocidad(a:Aparato, vel: int)
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml diagrama_clases_-_v0-1.png
+class Edificio {
+  - nombreEdificio: String
+}
+
+class Usuario {
+  - nombreUsuario: String
+  - contraseña: String
+}
+
+class Habitacion {
+  - nombreHabitacion: String
+}
+
+abstract class TipoAparato {
+  + nombreAparato: String
+  + estado: boolean
+  + prender():void
+  + apagar():void
+
+}
+
+class Luz extends TipoAparato{
+
+}
+
+class Ventilador extends TipoAparato{
+  - velocidad: int
+}
+
+class AireAcondicionado extends TipoAparato{
+  - temperatura: double
+}
+
+Usuario "-usuarios\n1..*" *--- "*\n-edificios" Edificio
+Edificio "-edificio\n1" *--- "1..*\n-habitaciones" Habitacion
+Habitacion "-habitacion\n0..1" *--- "*\n-tiposAparatos" TipoAparato
+@enduml

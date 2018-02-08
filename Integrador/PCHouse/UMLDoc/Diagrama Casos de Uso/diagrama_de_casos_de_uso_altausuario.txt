@@ -1,0 +1,4 @@
+@startuml diagrama_de_casos_de_uso_altausuario.png
+left to right direction
+:Invitado: -- (CU-01\nDarse de alta\ncomo usuario)
+@enduml
