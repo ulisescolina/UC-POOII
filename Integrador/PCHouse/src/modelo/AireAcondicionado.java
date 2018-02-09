@@ -59,5 +59,9 @@ public class AireAcondicionado extends TipoAparato {
         this.habitacion = habitacion;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return this.getNombreAparato();
+    }
 }
