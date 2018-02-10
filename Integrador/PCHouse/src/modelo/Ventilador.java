@@ -59,4 +59,9 @@ public class Ventilador extends TipoAparato {
         this.habitacion = habitacion;
     }
     
+    @Override
+    public String toString()
+    {
+        return this.getNombreAparato();
+    }
 }

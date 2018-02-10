@@ -50,4 +50,10 @@ public class Usuario {
     public void quitarEdificio(Edificio e) {
         this.edificios.remove(e);
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.getUsuario();
+    }
 }

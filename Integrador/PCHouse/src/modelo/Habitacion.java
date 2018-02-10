@@ -52,4 +52,10 @@ public class Habitacion {
     public void quitarTipoAparato(TipoAparato tA) {
         this.tiposAparatos.remove(tA);
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.getNombreHabitacion();
+    }
 }
