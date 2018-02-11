@@ -55,4 +55,10 @@ public class Edificio {
     public void quitarHabitacion(Habitacion h) {
         this.habitaciones.remove(h);
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.nombreEdificio;
+    }
 }
