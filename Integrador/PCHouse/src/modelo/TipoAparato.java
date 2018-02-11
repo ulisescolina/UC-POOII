@@ -21,4 +21,6 @@ public abstract class TipoAparato {
     }
     protected abstract void prender();
     protected abstract void apagar();
+    protected abstract Habitacion getHabitacion();
+    protected abstract void setHabitacion(Habitacion h);
 }

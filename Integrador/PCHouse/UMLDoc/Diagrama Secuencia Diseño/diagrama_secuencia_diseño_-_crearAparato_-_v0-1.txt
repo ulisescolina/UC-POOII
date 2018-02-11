@@ -11,6 +11,7 @@ participant "h:Habitacion" as H
 S -> CG: crearAparato(nombreAparato:String, TipoAparato:String, h:Habitacion)
 alt h != null
 alt TipoAparato != null
+alt TipoAparato == "LUZ" OR TipoAparato == "VENTILADOR" OR TipoAparato == "AIRE ACONDICIONADO"
 alt TipoAparato == "LUZ"
   create L
   CG -> L: l:=create(nombreAparato, h)
@@ -24,14 +25,14 @@ else TipoAparato == "AIRE ACONDICIONADO"
   CG -> AA: aa:=create(nombreAparato, h)
   CG -> H: agregarAparato(aa)
 end
-H -> CG: msg: exitoso
+else TipoAparato no es ningun aparato soportado
+CG -> S: msg: Este tipo de aparato aun no tiene soporte en el sistema
+end
 CG -> S: msg: se agrego el aparato a la habitacion
 else TipoAparato == null
-H -> CG: cod err. 1
 CG -> S: msg: se debe definir el tipo de aparato a crear
 end
 else h == null
-H -> CG: cod err. 2
 CG -> S: msg: se debe definir la habitacion a la cual asociar el aparato 
 end
 @enduml
