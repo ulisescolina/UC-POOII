@@ -1,38 +1,72 @@
 @startuml diagrama_clases_-_v0-1.png
 class Edificio {
   - nombreEdificio: String
+  + agregarUsuario(u:Usuario):void
+  + quitarUsuario(u:Usuario):void
+  + agregarHabitacion(h:Habitacion):void
+  + quitarHabitacion(h:Habitacion):void
 }
 
 class Usuario {
   - nombreUsuario: String
   - contraseña: String
+  + agregarEdificio(e:Edificio):void
+  + quitarEdificio(e:Edificio):void
 }
 
 class Habitacion {
   - nombreHabitacion: String
+  + setEdificio(e:Edificio):void
+  + getEdificio():Edificio
+  + agregarTipoAparato(ta:TipoAparato):void
+  + quitarTipoAparato(ta:TipoAparato):void
 }
 
 abstract class TipoAparato {
-  + nombreAparato: String
-  + estado: boolean
-  + prender():void
-  + apagar():void
-
+  # nombreAparato: String
+  # estado: boolean
+  # {abstract} prender():void
+  # {abstract} apagar():void
+  # {abstract} getHabitacion():Habitacion
+  # {abstract} setHabitacion(habitacion:Habitacion):void
 }
 
 class Luz extends TipoAparato{
-
+  + prender():void
+  + apagar():void
+  + getNombreAparato():String
+  + setNombreAparato(nombreAparato:String):void
+  + isEstado():boolean
+  + setEstado(estado:boolean):void
+  + getHabitacion():Habitacion
+  + setHabitacion(habitacion:Habitacion):void
 }
 
 class Ventilador extends TipoAparato{
   - velocidad: int
+  + prender():void
+  + apagar():void
+  + getNombreAparato():String
+  + setNombreAparato(nombreAparato:String):void
+  + isEstado():boolean
+  + setEstado(estado:boolean):void
+  + getHabitacion():Habitacion
+  + setHabitacion(habitacion:Habitacion):void
 }
 
 class AireAcondicionado extends TipoAparato{
   - temperatura: double
+  + prender():void
+  + apagar():void
+  + getNombreAparato():String
+  + setNombreAparato(nombreAparato:String):void
+  + isEstado():boolean
+  + setEstado(estado:boolean):void
+  + getHabitacion():Habitacion
+  + setHabitacion(habitacion:Habitacion):void
 }
 
 Usuario "-usuarios\n1..*" *--- "*\n-edificios" Edificio
 Edificio "-edificio\n1" *--- "1..*\n-habitaciones" Habitacion
-Habitacion "-habitacion\n0..1" *--- "*\n-tiposAparatos" TipoAparato
+Habitacion "-habitacion\n1" *--- "*\n-tiposAparatos" TipoAparato
 @enduml
