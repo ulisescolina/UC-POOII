@@ -3,21 +3,26 @@
 participant ":Sistema" as S
 control ":ControladorGeneral" as CG
 participant ":Edificio" as E
-participant ":Usuario" as U
+participant "u:Usuario" as U
+note right
+	""Usuario que inicio sesion""
+end note
 participant ":Habitacion" as H
 
-S -> CG: crearEdificio(nombre:String, u:Usuario)
+S -> CG: crearEdificio(nombre:String)
+alt nombre!=null
 create E
 CG -> E: e:=create(nombre:String)
-alt caso exitoso
-  CG -> E: agregarUsuario(u)
-  create H
-  CG -> H: h:=create(nombreHabitacion:Strng, e:Edificio)
-  CG -> E: agregarHabitacion(h)
-  E -> CG: ok
-  CG -> S: msg: Edificio creado satisfactoriamente
-else caso fallido
-  E -> CG: fallo
-  CG -> S: msg: Hubo un problema en la creacion del edificio
+CG -> E: agregarUsuario(u:Usuario)
+note right
+  ""Usuario que inicio sesion""
+end note
+CG -> U: agregarEdificio(e)
+create H
+CG -> H: h:=create(nombreHabitacion:Strng, e:Edificio)
+CG -> E: agregarHabitacion(h)
+CG -> S: msg: Edificio creado satisfactoriamente
+else nombre==null 
+CG -> S: msg: Debe proveer un nombre para el edificio a ser creado
 end
 @enduml

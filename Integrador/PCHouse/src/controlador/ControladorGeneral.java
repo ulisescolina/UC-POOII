@@ -27,21 +27,29 @@ public class ControladorGeneral {
 
     public void crearEdificio(String n)
     {
+        if (n == null) {
+            System.err.println("Se debe proveer de un nombre para el edificio a crear");
+            return;
+        }
+        
         Edificio e = new Edificio(n);
         e.agregarUsuario(this.u);
         u.agregarEdificio(e);
         Habitacion h = new Habitacion("Habitacion Inicial", e);
         e.agregarHabitacion(h);
+        System.out.println("Edificio '"+n+"' creado satisfactoriamente");
     }
     
     public int crearAparato(String nombreAparato, String tipoAparato, Habitacion h)
     {
         if (h==null) {
-            return 2; // Codigo de error 2
+            System.err.println("Debe proveer la habitacion en la cual sera creada el aparato.");
+            return 1;
         }
         
         else if (tipoAparato==null) {
-            return 1; // Codigo de error 1
+            System.err.println("Debe proveer el tipo de aparato a crear.");
+            return 1;
         }
         
         switch (tipoAparato) {
@@ -60,6 +68,9 @@ public class ControladorGeneral {
                         aa = new AireAcondicionado(nombreAparato, h);
                         h.agregarTipoAparato(aa);
                         break;
+            default:
+                        System.err.println("Este tipo de aparato aun no tiene soporte en el sistema.");
+                        return 1;
         }
         
         return 0; // Mensaje exitoso

@@ -13,10 +13,8 @@ alt a != null
 		CG -> L: l:=(Luz) a
 		alt l esta apagada
 			CG -> L: prender()
-			L -> CG: msg: exitoso
 			CG -> S: El aparato se encuentra encendido
 		else l esta prendida
-			L -> CG: cod error 2
 			CG -> S: El aparato ya esta encendido
 		end
 	else a es instancia de Ventilador
@@ -24,10 +22,8 @@ alt a != null
 		CG -> V: v:=(Ventilador) a
 		alt v esta apagado
 			CG -> V: prender()
-			V -> CG: msg: exitoso
 			CG -> S: El aparato se encuentra encendido
 		else v esta prendido
-			V -> CG: cod error 2
 			CG -> S: El aparato ya esta encendido
 		end
 	else a es instancia de AireAcondicionado
@@ -35,10 +31,8 @@ alt a != null
 		CG -> AA: aa:=(AireAcondicionado) a
 		alt aa esta apagado
 			CG -> AA: prender()
-			AA -> CG: msg: exitoso
 			CG -> S: El aparato se encuentra encendido
 		else aa esta prendido
-			AA -> CG: cod error 2
 			CG -> S: El aparato ya esta encendido 
 		end
 	end
