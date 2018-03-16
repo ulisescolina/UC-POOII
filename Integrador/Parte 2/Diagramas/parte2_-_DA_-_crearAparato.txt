@@ -1,0 +1,15 @@
+@startuml parte2_-_DA_-_crearAparato.png
+start
+
+:Solicitar creacion de
+nuevo aparato;
+if (Existe en la habitacion) then (yes)
+ :Informar que ya existe 
+  un aparato con ese alias;
+else (no)
+ :Crear aparato;
+ :Asociar aparato a la habitacion;
+endif
+
+stop
+@enduml
