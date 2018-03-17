@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package controlador;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 import modelo.*;
 /**
  *
@@ -14,12 +17,12 @@ public class ControladorGeneral {
     private Usuario u;
     
     /*Comportamiento Singleton*/
-//    public static ControladorGeneral getCG(Usuario sesion) {
-//        if (cg == null) {
-//            cg = new ControladorGeneral(sesion);
-//        }
-//        return cg;
-//    }
+    public static ControladorGeneral getCG(Usuario sesion) {
+        if (cg == null) {
+            cg = new ControladorGeneral(sesion);
+        }
+        return cg;
+    }
     
     public ControladorGeneral(Usuario sesion){
         this.u = sesion;
@@ -27,9 +30,20 @@ public class ControladorGeneral {
 
     public void crearEdificio(String n)
     {
+        ArrayList<Edificio> edificiosUsuario = u.getEdificios();
+        Iterator<Edificio> itr = edificiosUsuario.iterator();
+     
         if (n == null) {
             System.err.println("Se debe proveer de un nombre para el edificio a crear");
             return;
+        }
+        
+        while (itr.hasNext()) {
+            Edificio edificioUsuario = itr.next();
+            if (edificioUsuario.getNombreEdificio().equals(n)) {
+                System.err.println("El usuario "+this.u.getUsuario()+" ya posee un edificio denominado \""+n+"\"");
+                return;
+            }
         }
         
         Edificio e = new Edificio(n);
@@ -42,6 +56,35 @@ public class ControladorGeneral {
     
     public int crearAparato(String nombreAparato, String tipoAparato, Habitacion h)
     {
+        ArrayList<TipoAparato> aparatosEnHabitacion = h.getTiposAparatos();
+        Iterator<TipoAparato> itr = aparatosEnHabitacion.iterator();
+        
+        while (itr.hasNext()) {
+            TipoAparato aparato = itr.next();
+            if (aparato instanceof Luz) {/*Si es luz*/
+                Luz l = (Luz) aparato;
+                if (l.getNombreAparato().equals(nombreAparato)) {
+                    System.err.println("La habitacion "+h.getNombreHabitacion()+" ya posee un aparato denominado \""+l.getNombreAparato()+"\"");
+                    return 1;
+                }
+            } else if (aparato instanceof Ventilador) {/*Si es ventilador*/
+                Ventilador v = (Ventilador) aparato;
+                if (v.getNombreAparato().equals(nombreAparato)) {
+                    System.err.println("La habitacion "+h.getNombreHabitacion()+" ya posee un aparato denominado \""+v.getNombreAparato()+"\"");
+                    return 1;
+                }
+            } else if (aparato instanceof AireAcondicionado) { /*Si es aire acondicionado*/
+                AireAcondicionado aa = (AireAcondicionado) aparato;
+                if (aa.getNombreAparato().equals(nombreAparato)) {
+                    System.err.println("La habitacion "+h.getNombreHabitacion()+" ya posee un aparato denominado \""+aa.getNombreAparato()+"\"");
+                    return 1;
+                }
+            } else {
+                System.err.println("Este tipo de aparato aun no tiene soporte en el sistema.");
+                return 1;
+            }
+        }
+        
         if (h==null) {
             System.err.println("Debe proveer la habitacion en la cual sera creada el aparato.");
             return 1;
