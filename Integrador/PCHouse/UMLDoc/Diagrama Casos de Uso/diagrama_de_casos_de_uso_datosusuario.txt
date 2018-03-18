@@ -1,8 +1,8 @@
 @startuml diagrama_de_casos_de_uso_datosusuario.png
 left to right direction
-:Usuario: -- (CU-02\nIdentificarse)
-:Usuario: -- (CU-03\nConsultar\nsus datos)
-:Usuario: -- (CU-04\nModificar\nsus datos)
-:Usuario: -- (CU-05\nDarse de baja)
-(CU-05\nDarse de baja) ..> (CU-07\nEliminar edificio): <<include>>
+:Usuario: -- (CU-02\nLoguear\nUsuario)
+:Usuario: -- (CU-03\nConsultar\ndatos)
+:Usuario: -- (CU-04\nModificar\ndatos)
+:Usuario: -- (CU-05\nEliminar\nUsuario)
+(CU-05\nEliminar\nUsuario) ..> (CU-07\nEliminar edificio): <<include>>
 @enduml
