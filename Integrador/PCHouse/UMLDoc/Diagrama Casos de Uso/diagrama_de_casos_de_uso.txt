@@ -1,7 +1,27 @@
-@startuml diagrama_de_casos_de_uso_habitacion.png
+@startuml diagrama_de_casos_de_uso_MCU.png
 left to right direction
+:Invitado: -- (CU-01\nRegistrar usuario)
+:Usuario: -- (CU-02\nLoguear\nUsuario)
+:Usuario: -- (CU-03\nConsultar\ndatos)
+:Usuario: -- (CU-04\nModificar\ndatos)
+:Usuario: -- (CU-05\nEliminar\nUsuario)
+(CU-05\nEliminar\nUsuario) ..> (CU-07\nEliminar edificio): <<include>>
+:Usuario: -- (CU-06\nCrear edificio)
+:Usuario: -- (CU-08\nModificar edificio)
+:Usuario: -- (CU-07\nEliminar edificio)
+:Usuario: -- (CU-09\nConsultar edificios)
+(CU-06\nCrear edificio) ..> (CU-10\nCrear habitacion): <<include>>
+(CU-07\nEliminar edificio) ..> (CU-11\nEliminar habitacion): <<include>>
 :Usuario: -- (CU-10\nCrear habitacion)
 :Usuario: -- (CU-11\nEliminar habitacion)
 :Usuario: -- (CU-13\nConsultar habitaciones)
 :Usuario: -- (CU-12\nModificar habitacion)
+(CU-11\nEliminar habitacion) ..> (CU-15\nEliminar aparato): <<include>>
+:Usuario: -- (CU-14\nCrear aparato)
+:Usuario: -- (CU-15\nEliminar aparato)
+:Usuario: -- (CU-16\nModificar aparato)
+:Usuario: -- (CU-17\nConsultar aparatos)
+:Usuario: -- (CU-18\nPrender aparato)
+:Usuario: -- (CU-19\nApagar aparato)
+:Usuario: -- (CU-20\nConfigurar aparato)
 @enduml
