@@ -17,7 +17,11 @@ Usuario -> S: eliminarUsuario(usuario: Usuario)
 Usuario -> S: consultarDatosUsuario()
 
 == Manejo de Edificio ==
-Usuario -> S: crearEdificio(nombreEdificio:String, u:Usuario)
+Usuario -> S: crearEdificio(nombreEdificio:String)
+note right
+  ""Se utiliza el usuario""
+  ""que inicio sesion""
+end note
 Usuario -> S: eliminarEdificio(edificio: Edificio)
 Usuario -> S: modificarEdificio(edificio: Edificio, nombreEdificio: String)
 Usuario -> S: consultarEdificios()
